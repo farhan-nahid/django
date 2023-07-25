@@ -1,0 +1,18 @@
+
+    {% extends 'polls/base.html' %}
+
+    {% block main_content %}
+
+
+    <h3>{{question}}</h3>
+
+
+    <ul>
+     {% for choice in question.choice_set.all %}
+            <li>
+                {{ choice.choice_text }}
+            </li>
+    {% endfor %}
+    </ul>
+
+    {% endblock %}
