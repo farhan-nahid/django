@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from . models import Questions
+from django.shortcuts import render
 
 
 # Create your views here.
@@ -8,11 +9,9 @@ from . models import Questions
 
 def get(request):
     latest_questions = Questions.objects.order_by('-pub_date')[:5]
-    output = ''
-    for question in latest_questions:
-        output += question.question_text + '\n'
-        # output += f"Python{newline}Java{newline}Cpp"
-    print(output)
-    return HttpResponse(output)
 
+    context = {
+        'latest_questions': latest_questions
+    }
+    return render(request, 'polls/index.html', context)
 
